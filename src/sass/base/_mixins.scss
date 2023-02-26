@@ -1,0 +1,56 @@
+@function prc($pxOne, $pxTwo) {
+  $result: calc($pxOne / $pxTwo) * 100%;
+  @return $result;
+}
+
+// @function rem($px) {
+//   $result: math.div($px, 16) + rem;
+//   @return $result;
+// }
+@function rem($px) {
+  $result: calc($px / 16) + rem;
+  @return $result;
+}
+
+@function em($px) {
+  $result: calc($px / 16) + em;
+  @return $result;
+}
+
+@mixin calcSize(
+  $property,
+  $startSize,
+  $minSize,
+  $maxWidthContainer,
+  $minWidth
+) {
+  #{$property}: calc(
+    #{$minSize + px} + #{$startSize - $minSize} *
+      (
+        (100vw - #{$minWidth + px}) / #{$maxWidthContainer -
+          $minWidth}
+      )
+  );
+}
+
+@function sizeRem($px) {
+  $result: calc($px / 16);
+  @return $result;
+}
+
+@mixin calcSizeRem(
+  $property,
+  $startSize,
+  $minSize,
+  $maxWidthContainer,
+  $minWidth
+) {
+  #{$property}: calc(
+    #{$minSize + rem} + #{$startSize - $minSize} *
+      (
+        (100vw - #{$minWidth + rem}) / #{$maxWidthContainer -
+          $minWidth}
+      )
+  );
+  // 34px + (54 - 34) * ((100vw - 320px) / (767 - 320)));
+}

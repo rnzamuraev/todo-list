@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap");
+@import "./base/reset";
+@import "~Normalize.css";
+@import "./base/var";
+@import "./base/mixins";
+@import "./base/sprite";
+// @import "./base/fonts";
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  color: $mainColorLinkDekstop;
+}
+
+body {
+  font-family: $basicFontFamily, sans-serif;
+  font-weight: 400;
+  font-size: rem(11);
+}
+
+.container {
+  margin: 0 auto;
+  // width: rem(1643);
+}
+@media (min-width: em(992)) {
+  .container {
+    @include calcSizeRem(
+      "width",
+      sizeRem(1643),
+      sizeRem(940),
+      sizeRem(1920),
+      sizeRem(992)
+    );
+  }
+}
+// @media (max-width: em(1440)) {
+//   .container {
+//     width: 696px;
+//   }
+// }
+@media (max-width: em(992)) {
+  .container {
+    @include calcSizeRem(
+      "width",
+      sizeRem(768),
+      sizeRem(280),
+      sizeRem(992),
+      sizeRem(320)
+    );
+  }
+}
+// @media (max-width: 767px) {
+//   .container {
+//     width: 100%;
+//     @include calcSize("padding", 36, 20, 767, 320);
+//   }
+//   .title {
+//     font-size: 34px;
+//   }
+// }
+
+// @import "./components/calc";
+// @import "./components/form";
+// @import "./components/btn";
+// @import "./components/inputRange";
