@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
 @import "./base/reset";
 @import "~Normalize.css";
 @import "./base/var";
@@ -10,57 +10,38 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  color: $mainColorLinkDekstop;
+  color: $mainColorWhite;
 }
 
 body {
   font-family: $basicFontFamily, sans-serif;
-  font-weight: 400;
-  font-size: rem(11);
+  font-weight: 500;
+  font-size: rem(16);
 }
 
 .container {
   margin: 0 auto;
-  // width: rem(1643);
+  width: rem(390);
 }
-@media (min-width: em(992)) {
-  .container {
-    @include calcSizeRem(
-      "width",
-      sizeRem(1643),
-      sizeRem(940),
-      sizeRem(1920),
-      sizeRem(992)
-    );
-  }
-}
-// @media (max-width: em(1440)) {
+// @media (min-width: em(768)) {
 //   .container {
-//     width: 696px;
+//     @include calcSizeRem(
+//       "width",
+//       sizeRem(1643),
+//       sizeRem(940),
+//       sizeRem(768),
+//       sizeRem(280)
+//     );
 //   }
 // }
-@media (max-width: em(992)) {
+@media (max-width: em(450)) {
+  body {
+    font-size: rem(18);
+    @include calcSizeRem("font-size", sizeRem(18), sizeRem(14), sizeRem(450), sizeRem(320));
+  }
   .container {
-    @include calcSizeRem(
-      "width",
-      sizeRem(768),
-      sizeRem(280),
-      sizeRem(992),
-      sizeRem(320)
-    );
+    @include calcSizeRem("width", sizeRem(390), sizeRem(280), sizeRem(450), sizeRem(320));
   }
 }
-// @media (max-width: 767px) {
-//   .container {
-//     width: 100%;
-//     @include calcSize("padding", 36, 20, 767, 320);
-//   }
-//   .title {
-//     font-size: 34px;
-//   }
-// }
 
-// @import "./components/calc";
-// @import "./components/form";
-// @import "./components/btn";
-// @import "./components/inputRange";
+@import "./components/todo";

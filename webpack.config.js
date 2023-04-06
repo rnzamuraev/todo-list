@@ -1,7 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// const CopyPlugin = require("copy-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 const isProd = process.env.NODE_ENV === "production";
 const isDev = !isProd;
@@ -30,7 +30,7 @@ module.exports = {
       directory: path.resolve(__dirname, "dist"),
     },
     compress: true,
-    port: 9000,
+    port: 9100,
     open: true,
     hot: isDev,
   },
@@ -45,17 +45,17 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: hash("css"),
     }),
-    // new CopyPlugin({
-    //   patterns: [
-    //     {
-    //       from: path.resolve(
-    //         __dirname,
-    //         "src/img/favicon.ico"
-    //       ),
-    //       to: path.resolve(__dirname, "dist"),
-    //     },
-    //   ],
-    // }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve(
+            __dirname,
+            "src/img/Delete.svg"
+          ),
+          to: path.resolve(__dirname, "dist/img"),
+        },
+      ],
+    }),
   ],
   module: {
     rules: [

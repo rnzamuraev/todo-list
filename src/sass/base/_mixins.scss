@@ -3,10 +3,6 @@
   @return $result;
 }
 
-// @function rem($px) {
-//   $result: math.div($px, 16) + rem;
-//   @return $result;
-// }
 @function rem($px) {
   $result: calc($px / 16) + rem;
   @return $result;
@@ -46,7 +42,7 @@
   $minWidth
 ) {
   #{$property}: calc(
-    #{$minSize + rem} + #{$startSize - $minSize} *
+    #{($minSize) + rem} + #{$startSize - $minSize} *
       (
         (100vw - #{$minWidth + rem}) / #{$maxWidthContainer -
           $minWidth}
