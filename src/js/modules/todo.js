@@ -58,26 +58,29 @@ export default function todo() {
 
     formInput[0].focus();
     formInput.val(title.html());
+    $("[data-item]").removeClass("edit");
     $(this).closest("[data-item]").addClass("edit");
   }
 
   function handlerChange(e) {
-    if (!e.target.classList.contains("form__btn")) {
-      if (!e.target.classList.contains("form__input")) {
-        form.off("submit", handlerSubmitChange);
-        window.removeEventListener("click", handlerChange);
-        $(".todo__list").find(".edit").removeClass("edit");
-        formInput.val("");
-        //
-        form.on("submit", handlerSubmit);
+    // if (!e.target.classList.contains("form__btn")) {
+    //   if (!e.target.classList.contains("form__input")) {
+    if (!$(e.target).contains("form__btn")) {
+      if (!$(e.target).contains("form__input")) {
+        if (!$(e.target).hasAttr("data-edit")) {
+          form.off("submit", handlerSubmitChange);
+          window.removeEventListener("click", handlerChange);
+          $(".todo__list").find(".edit").removeClass("edit");
+          formInput.val("");
+          //
+          form.on("submit", handlerSubmit);
+        }
       }
     }
   }
 
   function handlerSubmitChange(e) {
     e.preventDefault();
-
-    console.log("submit");
 
     const title = $(".todo__list").find(".edit").find("h2");
     const inputValue = $(this).find("input").val();
@@ -103,11 +106,12 @@ export default function todo() {
     if (check.getAttr("data-checked") === "false") {
       check.setAttr("data-checked", "true");
       changeArray(this, "true");
-      $(this).closest("[data-item]").addClass("completed");
+      const id = $(this).closest("[data-item]").getAttr("id").slice(4);
+      $(this).closest("[data-item]").addClass("completed").style("order", id);
     } else {
       check.setAttr("data-checked", "false");
       changeArray(this, "false");
-      $(this).closest("[data-item]").removeClass("completed");
+      $(this).closest("[data-item]").removeClass("completed").style("order", "");
     }
 
     console.log(itemArr);

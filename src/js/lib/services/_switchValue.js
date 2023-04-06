@@ -32,6 +32,8 @@ export function _getStyleValue(elem, styleName) {
       return elem.scrollHeight;
     case "userSelect":
       return elem.userSelect;
+    case "order":
+      return elem.order;
     // case "html":
     //   return elem.innerHTML;
     // case "text":
@@ -87,6 +89,9 @@ export function _setStyleValue(elem, styleName, value) {
       return;
     case "userSelect":
       elem.userSelect = val;
+      return;
+    case "order":
+      elem.order = val;
       return;
     // case "html":
     //   elem.innerHTML = val;

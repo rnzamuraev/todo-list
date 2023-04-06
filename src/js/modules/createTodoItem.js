@@ -39,7 +39,7 @@ export default function createTodoItem(elem, value, id, check = "false") {
 
   console.log(check);
   if (check === true) {
-    todoItem.addClass("completed");
+    todoItem.addClass("completed").style("order", id);
   }
 
   elem.prepend(todoItem);
