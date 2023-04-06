@@ -14,6 +14,7 @@ export default function todo() {
 
   function handlerSubmit(e) {
     e.preventDefault();
+
     const inputValue = $(this).find("input").val();
     const id = counter;
     createObj(counter, inputValue);
@@ -57,14 +58,12 @@ export default function todo() {
 
     formInput[0].focus();
     formInput.val(title.html());
-    title.addClass("edit");
+    $(this).closest("[data-item]").addClass("edit");
   }
 
   function handlerChange(e) {
     if (!e.target.classList.contains("form__btn")) {
       if (!e.target.classList.contains("form__input")) {
-        console.log("blur");
-
         form.off("submit", handlerSubmitChange);
         window.removeEventListener("click", handlerChange);
         $(".todo__list").find(".edit").removeClass("edit");
@@ -80,11 +79,11 @@ export default function todo() {
 
     console.log("submit");
 
-    const title = $(".todo__list").find(".edit");
+    const title = $(".todo__list").find(".edit").find("h2");
     const inputValue = $(this).find("input").val();
 
     title.html(inputValue);
-    title.removeClass("edit");
+    $(".todo__list").find(".edit").removeClass("edit");
 
     $(this).find("input").val("");
     //
@@ -118,6 +117,17 @@ export default function todo() {
   function onDelete(e) {
     e.preventDefault();
     changeArray(this, "del");
+
+    if ($(this).closest("[data-item]").contains("edit")) {
+      form.off("submit", handlerSubmitChange);
+      window.removeEventListener("click", handlerChange);
+
+      form.on("submit", handlerSubmit);
+
+      if (formInput.valLength() > 0) {
+        formInput[0].focus();
+      }
+    }
 
     $(this).closest("[data-item]").remove();
 
