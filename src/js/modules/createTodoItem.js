@@ -14,14 +14,16 @@ export default function createTodoItem(elem, value, id, check = "false") {
     .setAttr("for", "check")
     .append(todoItemCheckbox, todoItemSpan);
   //
-  const todoItemImgEdit = $().create("img").addClass("todo__ed").setAttr("src", "../img/pen.png");
+  const todoItemImgEdit = $().create("img").addClass("todo__ed");
+  // .setAttr("src", "../img/pen.png");
   const todoItemEdit = $()
     .create("button")
     .addClass("todo__edit")
     .setAttr("data-edit", "")
     .append(todoItemImgEdit);
   //
-  const todoItemImg = $().create("img").addClass("todo__del").setAttr("src", "../img/Delete.svg");
+  const todoItemImg = $().create("img").addClass("todo__del");
+  // .setAttr("src", "../img/Delete.svg");
   const todoItemDel = $()
     .create("button")
     .addClass("todo__delete")

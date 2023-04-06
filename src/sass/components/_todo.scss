@@ -119,16 +119,37 @@
       opacity: 1;
     }
   }
-  &__edit, //
+  &__edit,
   &__delete {
+    width: rem(20);
+    height: rem(20);
+    position: relative;
     background: transparent;
     border: none;
+    cursor: pointer;
+    &::before {
+      content: "";
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
   }
   &__edit {
-    width: 20px;
-    background-image: url("../img/pen.png") no-repeat;
-    img {
-      width: 100%;
+    // background-image: url("../img/pen.png") no-repeat;
+    // img {
+    //   width: 100%;
+    // }
+    &::before {
+      background: url("../img/pen.svg") no-repeat;
+      background-size: 18px;
+    }
+  }
+  &__delete {
+    &::before {
+      background: url("../img/Delete.svg") no-repeat;
+      background-size: 18px;
     }
   }
 }
